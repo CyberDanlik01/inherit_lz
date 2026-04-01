@@ -1,31 +1,46 @@
+
 #Импортим
 from caesar_vernam import CaesarCipher, VernamCipher
 
-print("Шифр Цезаря :")
-text_1 = "Wo jiao Danila, ni ne"      #Китайского вам в ленту)
-shift = 11
+def run_caesar():
+    print("Шифр Цезаря :")
+    text = "Wo jiao Danila, ni ne"     #Китайского вам в ленту)
+    shift = 11
 
-#Шифровка
-caesar = CaesarCipher(text_1, shift)
-encrypted_c = caesar.encrypt()
-print("Исходный текст :", text_1)
-print("Зашифрованный текст :", encrypted_c)
+#Шифруем
+    caesar = CaesarCipher(text, shift)
+    encrypted = caesar.encrypt()
 
-#Расшифровка
-caesar2 = CaesarCipher(encrypted_c, shift)
-print("Расшифрованный текст :", caesar2.decrypt())
+    print("Исходный текст:", text)
+    print("Зашифрованный текст:", encrypted)
 
-print("Шифр Вернама :")
-text_2 = "Wo shi xuesheng, wo bu shi laoshi, ni ne"    #Китайского вам в ленту)
-key = "yes"
+#Расшифровываем
+    decrypted = CaesarCipher(encrypted, shift).decrypt()
+    print("Расшифрованный текст:", decrypted)
+    print()
 
-#Шифровка
-vernam = VernamCipher(text_2, key)
-encrypted_v = vernam.encrypt()
-print("Исходный текст :", text_2)
-print("Ключ :", key)
-print("Зашифрованный текст :", encrypted_v)
 
-#Расшифровка
-vernam2 = VernamCipher(encrypted_v, key)
-print("Расшифрованный текст:", vernam2.decrypt())
+def run_vernam():
+    print("Шифр Вернама :")
+    text = "Wo shi xuesheng, wo bu shi laoshi, ni ne"     #Китайского вам в ленту)
+    key = "yes"
+
+#Шифруем
+    vernam = VernamCipher(text, key)
+    encrypted = vernam.encrypt()
+
+    print("Исходный текст:", text)
+    print("Ключ:", key)
+    print("Зашифрованный текст:", encrypted)
+
+#Расшифровываем
+    decrypted = VernamCipher(encrypted, key).decrypt()
+    print("Расшифрованный текст:", decrypted)
+    print()
+
+def main():
+    run_caesar()
+    run_vernam()
+
+if __name__ == "__main__":
+    main()
